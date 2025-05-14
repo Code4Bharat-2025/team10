@@ -124,7 +124,7 @@ travel-guide/
 |--------------|----------------------------------|
 | Frontend     | HTML, CSS, JavaScript, React |
 | Backend      | Flask         |
-| AI/LLM       | Local SLM (e.g., LLaMA) |
+| AI/LLM       | Local SLM (e.g., OLLaMA) |
 | Data Source  | Static location data / GeoDB    |
 | Hosting      | Local server / lightweight VM     |
 | UI           | Mobile responsive layout          |
