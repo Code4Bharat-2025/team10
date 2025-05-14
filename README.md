@@ -33,10 +33,11 @@ git clone https://github.com/Code4Bharat-2025/team10.git
 
 ## Prerequisites
 
-- Node.js (v14 or higher)
+- React.js (18.2.0 or higher)
 - Python (v3.8 or higher)
 - pip (Python package manager)
 - A GEOdb Cities API key (get it from [RapidAPI](https://rapidapi.com/wirefreethought/api/geodb-cities/))
+- Ollama
 
 ## Backend Setup
 
