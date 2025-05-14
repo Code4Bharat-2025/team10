@@ -30,7 +30,6 @@
 
 ```bash
 git clone https://github.com/Code4Bharat-2025/team10.git
-cd globe-scout
 
 ## Prerequisites
 
