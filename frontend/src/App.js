@@ -3,7 +3,23 @@ import './App.css';
 
 function App() {
   // Chat state management
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState([
+    {
+      id: Date.now(),
+      content: `
+        <div class="flex items-start">
+          <div class="bg-blue-100 text-blue-800 p-2 rounded-full mr-3">
+            <i class="fas fa-globe-americas"></i>
+          </div>
+          <div>
+            <p>Hello fellow traveler! 🌍 I'm your World Explorer assistant, here to help you discover amazing places, plan your trips, and learn about different cultures.</p>
+            <p class="mt-2">Where would you like to explore today?</p>
+          </div>
+        </div>
+      `,
+      isUser: false
+    }
+  ]);
   const [inputValue, setInputValue] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [quickSuggestions, setQuickSuggestions] = useState([]);
@@ -296,22 +312,8 @@ function App() {
     setQuickSuggestions([]);
   };
 
-  // Initial welcome message
-  useEffect(() => {
-    setTimeout(() => {
-      addMessage(`
-        <div class="flex items-start">
-          <div class="bg-blue-100 text-blue-800 p-2 rounded-full mr-3">
-            <i class="fas fa-globe-americas"></i>
-          </div>
-          <div>
-            <p>Hello fellow traveler! 🌍 I'm your World Explorer assistant, here to help you discover amazing places, plan your trips, and learn about different cultures.</p>
-            <p class="mt-2">Where would you like to explore today?</p>
-          </div>
-        </div>
-      `);
-    }, 1000);
-  }, []);
+  // Welcome message is now initialized in the messages state array
+  // No need for a useEffect hook to add it
 
   return (
     <div className="App bg-white min-h-screen">
@@ -325,7 +327,7 @@ function App() {
                         <i className="fas fa-globe-americas text-2xl text-blue-300"></i>
                         <div className="absolute -top-1 -right-1 w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                     </div>
-                    <h1 className="text-xl font-bold">World Explorer <span className="text-xs font-normal bg-blue-800 px-2 py-0.5 rounded-full ml-2">PRO</span></h1>
+                    <h1 className="text-xl font-bold">Globe Scout <span className="text-xs font-normal bg-blue-800 px-2 py-0.5 rounded-full ml-2">PRO</span></h1>
                 </div>
                 <div className="flex items-center space-x-3">
                     <button className="bg-white bg-opacity-20 backdrop-blur-sm px-3 py-1.5 rounded-full font-medium hover:bg-opacity-30 transition flex items-center text-sm">
@@ -356,12 +358,12 @@ function App() {
                         </div>
                         <ul className="space-y-1.5">
                             <li className="flex items-center p-1.5 rounded-md hover:bg-blue-50 cursor-pointer text-sm">
-                                <i className="fas fa-plane mr-2.5 text-blue-500"></i>
-                                <span>Flight Finder</span>
+                                <i className="fas fa-money-bill-wave mr-2.5 text-blue-500"></i>
+                                <span>Currency Calculator</span>
                             </li>
                             <li className="flex items-center p-1.5 rounded-md hover:bg-blue-50 cursor-pointer text-sm">
-                                <i className="fas fa-hotel mr-2.5 text-blue-500"></i>
-                                <span>Hotel Search</span>
+                                <i className="fas fa-lightbulb mr-2.5 text-blue-500"></i>
+                                <span>Travel Tips</span>
                             </li>
                             <li className="flex items-center p-1.5 rounded-md hover:bg-blue-50 cursor-pointer text-sm">
                                 <i className="fas fa-utensils mr-2.5 text-blue-500"></i>
@@ -409,9 +411,9 @@ function App() {
                         <div className="flex items-center justify-between mb-1.5">
                             <div>
                                 <div className="font-medium text-sm">Current Location</div>
-                                <div className="text-xs opacity-90">New York, USA</div>
+                                <div className="text-xs opacity-90">Pune, India</div>
                             </div>
-                            <div className="text-2xl">72°F</div>
+                            <div className="text-2xl">26°C</div>
                         </div>
                         <div className="flex items-center justify-between text-xs">
                             <div className="flex items-center">
@@ -435,32 +437,32 @@ function App() {
                     <div className="globe-float inline-block mb-4">
                         <i className="fas fa-globe text-6xl text-blue-500"></i>
                     </div>
-                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome to World Explorer!</h2>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome to Globe Scout!</h2>
                     <p className="text-gray-600 mb-4">I'm your virtual travel guide. Ask me about destinations, cultures, landmarks, or travel tips!</p>
                     <div className="flex flex-wrap justify-center gap-2">
                         <button 
-                            onClick={() => sendQuickQuestion("Best beaches in the world")}
+                            onClick={() => sendQuickQuestion("Tell me about countries to explore")}
                             className="suggestion-chip bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm hover:bg-blue-200 transition flex items-center"
                         >
-                            <i className="fas fa-umbrella-beach mr-1"></i> Best beaches
+                            <i className="fas fa-globe-americas mr-1"></i> Explore Countries
                         </button>
                         <button 
-                            onClick={() => sendQuickQuestion("Famous landmarks to visit")}
+                            onClick={() => sendQuickQuestion("What cities should I visit?")}
                             className="suggestion-chip bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm hover:bg-blue-200 transition flex items-center"
                         >
-                            <i className="fas fa-monument mr-1"></i> Landmarks
+                            <i className="fas fa-city mr-1"></i> Explore Cities
                         </button>
                         <button 
-                            onClick={() => sendQuickQuestion("Budget travel tips")}
+                            onClick={() => sendQuickQuestion("Test my geography knowledge")}
                             className="suggestion-chip bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm hover:bg-blue-200 transition flex items-center"
                         >
-                            <i className="fas fa-wallet mr-1"></i> Budget tips
+                            <i className="fas fa-question-circle mr-1"></i> Quiz
                         </button>
                         <button 
-                            onClick={() => sendQuickQuestion("Travel itineraries suggestions")}
+                            onClick={() => sendQuickQuestion("Share an interesting travel fact")}
                             className="suggestion-chip bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm hover:bg-blue-200 transition flex items-center"
                         >
-                            <i className="fas fa-route mr-1"></i> Itineraries
+                            <i className="fas fa-lightbulb mr-1"></i> Fun Facts
                         </button>
                     </div>
                 </div>
@@ -481,7 +483,7 @@ function App() {
                             <div>
                                 {!message.isUser && (
                                     <div className="flex items-center">
-                                        <span className="font-medium text-xs">World Explorer</span>
+                                        <span className="font-medium text-xs">Globe Scout</span>
                                         <span className="ml-1.5 text-xs text-gray-400">Just now</span>
                                     </div>
                                 )}
@@ -505,7 +507,7 @@ function App() {
                             </div>
                             <div>
                                 <div className="flex items-center">
-                                    <span className="font-medium text-xs">World Explorer</span>
+                                    <span className="font-medium text-xs">Globe Scout</span>
                                     <span className="ml-1.5 text-xs text-gray-400">Typing</span>
                                 </div>
                                 <div className="bg-white rounded-lg p-2.5 mt-1 shadow-sm border border-gray-100">
